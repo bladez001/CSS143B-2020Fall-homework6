@@ -52,11 +52,27 @@ public class ArrayDictionary implements Dictionary {
         }
 
         int hashedKey = hashFunction(key);
+
+        //if entries at [hashedKey] is null, do nothing
         if (entries[hashedKey] == null) {
             return;
         }
 
         KVEntry ptr = entries[hashedKey];
+
+        //this checks if ptr is the key to remove
+        if (ptr.key.equals(key)) {
+            entries[hashedKey] = ptr.next;
+        }
+
+        //traverse until you find the matching key
+        while (ptr.next != null) {
+            if (ptr.next.key.equals(key)) {
+                ptr.next = ptr.next.next;
+                return;
+            }
+            ptr = ptr.next;
+        }
     }
 
     @Override
