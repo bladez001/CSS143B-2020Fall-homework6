@@ -46,6 +46,17 @@ public class ArrayDictionary implements Dictionary {
     @Override
     public void remove(String key) {
         // homework
+        //if key is null, do nothing
+        if (key == null) {
+            return;
+        }
+
+        int hashedKey = hashFunction(key);
+        if (entries[hashedKey] == null) {
+            return;
+        }
+
+        KVEntry ptr = entries[hashedKey];
     }
 
     @Override
